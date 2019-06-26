@@ -9,25 +9,60 @@
 
 var letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
-console.log (letters)
+console.log(letters)
 
-var compChoice = letters [Math.floor(Math.random()*letters.length)];
-console.log ("comp chose " + compChoice);
+// var compChoice = letters[Math.floor(Math.random() * letters.length)];
+// console.log("comp chose " + compChoice);
 
-document.onkeyup = function () {
+var wins = 0;
+var losses = 0;
+var guesses = 3;
+
+var winstext = document.getElementById("wins-text");
+var lossestext = document.getElementById("losses-text");
+var guessestext = document.getElementById("guesses-text");
+// var guessedletters = document.getElementById("guessed-letters");
+
+// funtion makeChoice (compChoice); {
+var compChoice = letters[Math.floor(Math.random() * letters.length)];
+console.log("comp chose " + compChoice);
+
+// function resetgame () {
+document.onkeyup = function (event) {
     var userGuess = event.key;
-    console.log (userGuess);
-// do {
+    console.log("user chose " + userGuess);
+
+    // if (userGuess === letters) {
+
     if (userGuess === compChoice) {
-        alert ("you guessed right !!");
+        alert("you guessed right !!");
+        wins++;
     }
 
-    else {
-        alert ("you guessed wrong... try again");
+    else if (userGuess !== compChoice && guesses !== 0) {
+        alert("you guessed wrong... try again");
+        guesses--;
+
+        alert("No of guesses left " + guesses);
+
+        // while (guesses > 0);
     }
-    
+
+    else if (guesses < 1) {
+        alert("you lost");
+        losses++;
+    }
+
+    winstext.textContent = "wins : " + wins;
+    lossestext.textContent = "losses : " + losses;
+    guessestext.textContent = "guesses : " + guesses;
+    // guessesletters.textContent = "guessed letters : " + guessedletters;
+
 }
-// while (userGuess < 4);
-// else {
-//     alert ("you lost");
+
+// else if (userGuess !== letters) {
+//     alert("please press a valid letter key");
 // }
+
+
+

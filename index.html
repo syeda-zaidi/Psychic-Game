@@ -7,15 +7,24 @@
 
             <link rel="stylesheet" href="assets/css/reset.css">
             <link rel="stylesheet" href="assets/css/style.css">
-            <script src="assets/javascript/game.js"></script>
+            
     </head>
 
     <body>
         <div id="psychic-game">
             <h1> The Psychic Game </h1>
-        </div>
+            <p> Guess what letter I'm thinking of </p>
+            <p id="wins-text"> </p>
+            <p id="losses-text"> </p>
+            <p id="guesses-text"></p>
+            <p id="guessed-letters"> </p>
 
-        
+            <!-- <form onreset="resetgame()">
+                <input type="reset">
+              </form>  -->
+        </div>
+        <script src="assets/javascript/game.js"></script>
+       
 
     </body>
 
