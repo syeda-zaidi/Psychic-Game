@@ -1,64 +1,68 @@
-// comp chooses a random letter 
-// user guesses the letter chosen by the comp 
-// number of guesses = 8 
-// record the guessed letter 
-// reduce the number of guesses after every try 
 
-// var Letter = "abcdefghijklmnopqrstuvwxyz".split("");
-// console.log (letter[5]);
-
+// letters to be chosen by the computer 
 var letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
-
 console.log(letters)
-
-// var compChoice = letters[Math.floor(Math.random() * letters.length)];
-// console.log("comp chose " + compChoice);
 
 var wins = 0;
 var losses = 0;
 var guesses = 3;
+var compSelection;
+var guessedLetter = [];
 
-var winstext = document.getElementById("wins-text");
-var lossestext = document.getElementById("losses-text");
-var guessestext = document.getElementById("guesses-text");
-// var guessedletters = document.getElementById("guessed-letters");
+var winsText = document.getElementById ("wins-text");
+var winsLosses = document.getElementById ("losses-text");
+var guessesText = document.getElementById ("guesses-text");
+var userGuesses = document.getElementById ("user-guesses");
 
-// funtion makeChoice (compChoice); {
-var compChoice = letters[Math.floor(Math.random() * letters.length)];
-console.log("comp chose " + compChoice);
+winsText.textContent = ("wins : " + wins);
+winsLosses.textContent = ("losses : " + losses);
+guessesText.textContent = ("Guesses Left : " + guesses);
+userGuesses.textContent = ("Guessed Letters so far : " + guessedLetter);
 
-// function resetgame () {
+// setting compchoice var to make a random choice from the var letters 
+
+function compChoice() {
+    var compChoice = letters[Math.floor(Math.random() * letters.length)];
+    console.log("comp chose " + compChoice);
+
+    return compChoice;
+}
+compSelection = compChoice();
+
+function reset() {
+    guesses = 3;
+    compSelection = compChoice();
+}
+
 document.onkeyup = function (event) {
     var userGuess = event.key;
     console.log("user chose " + userGuess);
 
-    // if (userGuess === letters) {
-
-    if (userGuess === compChoice) {
+    if (userGuess === compSelection) {
         alert("you guessed right !!");
         wins++;
+
+        reset();
     }
 
-    else if (userGuess !== compChoice && guesses !== 0) {
+    else if (userGuess !== compSelection && guesses !== 0) {
         alert("you guessed wrong... try again");
         guesses--;
 
         alert("No of guesses left " + guesses);
 
-        // while (guesses > 0);
-    }
+        if (guesses === 0) {
+            losses++;
+            alert("you lost " + losses + "time");
 
-    else if (guesses < 1) {
-        alert("you lost");
-        losses++;
+            reset();
+        }
     }
-
-    winstext.textContent = "wins : " + wins;
-    lossestext.textContent = "losses : " + losses;
-    guessestext.textContent = "guesses : " + guesses;
-    // guessesletters.textContent = "guessed letters : " + guessedletters;
+    winsText.textContent=("wins : " + wins);
+    
 
 }
+
 
 // else if (userGuess !== letters) {
 //     alert("please press a valid letter key");
