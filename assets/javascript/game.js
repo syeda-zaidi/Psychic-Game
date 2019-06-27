@@ -5,7 +5,7 @@ console.log(letters)
 
 var wins = 0;
 var losses = 0;
-var guesses = 3;
+var guesses = 9;
 var compSelection;
 var guessedLetter = [];
 
@@ -25,7 +25,7 @@ function compChoice() {
 compSelection = compChoice();
 
 function reset() {
-    guesses = 3;
+    guesses = 9;
     compSelection = compChoice();
     guessedLetter = [];
 }
@@ -55,10 +55,11 @@ document.onkeyup = function (event) {
         if (guesses === 0) {
             losses++;
 
+            alert("you lost ! lets play again ");
+
             reset();
         }
     }
-
 
     winsText.textContent = ("wins : " + wins);
     lossesText.textContent = ("losses : " + losses);
@@ -66,10 +67,6 @@ document.onkeyup = function (event) {
     userGuesses.textContent = ("Guessed Letters so far : " + guessedLetter);
 
 }
-
-
-
-
 
 // else if (userGuess !== letters) {
 //     alert("please press a valid letter key");
