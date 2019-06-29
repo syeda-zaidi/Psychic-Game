@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function(event) { 
 
 // letters to be chosen by the computer 
 var letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -9,12 +10,13 @@ var guesses = 9;
 var compSelection;
 var guessedLetter = [];
 
+
 var winsText = document.getElementById("wins-text");
 var lossesText = document.getElementById("losses-text");
 var guessesText = document.getElementById("guesses-text");
 var userGuesses = document.getElementById("user-guesses");
 
-// setting compchoice var to make a random choice from the var letters 
+// creating function compchoice to make a random choice from the array letters 
 
 function compChoice() {
     var compChoice = letters[Math.floor(Math.random() * letters.length)];
@@ -24,6 +26,7 @@ function compChoice() {
 }
 compSelection = compChoice();
 
+//creating a reset function 
 function reset() {
     guesses = 9;
     compSelection = compChoice();
@@ -37,7 +40,7 @@ guessesText.textContent = ("Guesses Left : " + guesses);
 userGuesses.textContent = ("Guessed Letters so far : " + guessedLetter);
 
 document.onkeyup = function (event) {
-    var userGuess = event.key;
+    var userGuess = event.key.toLowerCase();
     console.log("user chose " + userGuess);
     guessedLetter.push(userGuess);
 
@@ -71,6 +74,6 @@ document.onkeyup = function (event) {
 // else if (userGuess !== letters) {
 //     alert("please press a valid letter key");
 // }
-
+});
 
 
